@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import IMotorcycle from '../Interfaces/IMotocycle';
+import IMotorcycle from '../Interfaces/IMotorcycle';
 import MotorService from '../Services/MotorService';
 
 export default class MotorcycleController {

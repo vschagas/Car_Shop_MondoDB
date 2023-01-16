@@ -1,8 +1,8 @@
 import { Schema } from 'mongoose';
-import IMotorcycle from '../Interfaces/IMotocycle';
-import AbstractModel from './AbstractModel';
+import IMotorcycle from '../Interfaces/IMotorcycle';
+import AbstractODM from './AbstractODM';
 
-export default class MotorcycleODM extends AbstractModel<IMotorcycle> {
+export default class MotorcycleODM extends AbstractODM<IMotorcycle> {
   constructor() {
     const schema = new Schema<IMotorcycle>({
       model: { type: String, required: true },

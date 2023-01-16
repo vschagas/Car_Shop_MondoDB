@@ -1,7 +1,7 @@
 import { Schema, models, Model, model } from 'mongoose';
 import ICar from '../Interfaces/ICar';
 
-export default abstract class AbstractModel<T> {
+export default abstract class AbstractODM<T> {
   protected _model: Model<T>;
   protected _schema: Schema;
   protected _nameModel: string;

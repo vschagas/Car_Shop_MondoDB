@@ -3,6 +3,6 @@ import MotorcycleController from '../Controllers/MotorController';
 
 const router = Router();
 
-router.put('/', (req, res, next) => new MotorcycleController(req, res, next).create());
+router.post('/', (req, res, next) => new MotorcycleController(req, res, next).create());
 
 export default router;

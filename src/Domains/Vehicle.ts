@@ -1,6 +1,6 @@
-import { IAutomobiles } from '../Interfaces/IAutomobiles';
+import IVehicle from '../Interfaces/IVehicle';
 
-export default class Automobiles {
+export default class Vehicle {
   protected id: string | undefined;
   protected model: string;
   protected year: number;
@@ -8,7 +8,7 @@ export default class Automobiles {
   protected buyValue: number;
   protected status: boolean | undefined;
 
-  constructor(automobiles: IAutomobiles) {
+  constructor(automobiles: IVehicle) {
     this.id = automobiles.id;
     this.model = automobiles.model;
     this.year = automobiles.year;
