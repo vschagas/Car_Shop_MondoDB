@@ -14,4 +14,21 @@ export default class MotorService {
     const createdMotorcycle = this._motorcycleDomain(result);
     return createdMotorcycle;
   }
+
+  async findAll() {
+    const motorcycleODM = new MotorcycleODM();
+    const result = await motorcycleODM.find();
+    const allMotorcycle = result.map((car) => this._motorcycleDomain(car));
+    return allMotorcycle;
+  }
+
+  async findById(id: string) {
+    const motorcycleODM = new MotorcycleODM();
+    const findOne = await motorcycleODM.findById(id);
+    if (findOne) {
+      const createdMotorcycle = this._motorcycleDomain(findOne);
+      return createdMotorcycle;
+    }
+    return findOne;
+  }
 }
