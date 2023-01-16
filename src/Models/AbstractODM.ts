@@ -1,5 +1,6 @@
 import { Schema, models, Model, model } from 'mongoose';
 import ICar from '../Interfaces/ICar';
+import IMotorcycle from '../Interfaces/IMotorcycle';
 
 export default abstract class AbstractODM<T> {
   protected _model: Model<T>;
@@ -24,7 +25,7 @@ export default abstract class AbstractODM<T> {
     return this._model.findById(id);
   }
 
-  public async update(id: string, obj: ICar): Promise<T | null> {
+  public async update(id: string, obj: ICar | IMotorcycle): Promise<T | null> {
     return this._model.findByIdAndUpdate(
       { _id: id },
       { $set: { ...obj } },

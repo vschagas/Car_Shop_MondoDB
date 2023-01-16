@@ -31,4 +31,14 @@ export default class MotorService {
     }
     return findOne;
   }
+
+  async updateOne(id: string, obj: IMotorcycle) {
+    const motorcycleODM = new MotorcycleODM();
+    const updatedMotorcycle = await motorcycleODM.update(id, obj);
+    if (updatedMotorcycle) {
+      const update = this._motorcycleDomain(updatedMotorcycle);
+      return update;
+    }
+    return updatedMotorcycle;
+  }
 }
