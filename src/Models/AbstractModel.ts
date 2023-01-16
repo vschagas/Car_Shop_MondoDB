@@ -1,4 +1,5 @@
 import { Schema, models, Model, model } from 'mongoose';
+import ICar from '../Interfaces/ICar';
 
 export default abstract class AbstractModel<T> {
   protected _model: Model<T>;
@@ -21,5 +22,13 @@ export default abstract class AbstractModel<T> {
 
   public async findById(id: string): Promise<T | null> {
     return this._model.findById(id);
+  }
+
+  public async update(id: string, obj: ICar): Promise<T | null> {
+    return this._model.findByIdAndUpdate(
+      { _id: id },
+      { $set: { ...obj } },
+      { new: true },
+    );
   }
 }
