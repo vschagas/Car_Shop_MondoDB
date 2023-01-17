@@ -11,9 +11,9 @@ const makeSut = () => {
 };
 
 describe('CarService Tests', function () {
-  // afterEach(function () {
-  //   Sinon.restore();
-  // });
+  afterEach(function () {
+    Sinon.restore();
+  });
 
   it('Should create a car at db', async function () {
     const carService = makeSut();
@@ -34,5 +34,12 @@ describe('CarService Tests', function () {
     Sinon.stub(Model, 'findById').resolves(modelResponse);
     const find = await carService.findById('63c6f8a4e18b8441d9b2086f');
     expect(find).to.be.deep.equal(modelResponse);
+  });
+
+  it('Should update one car', async function () {
+    const carService = makeSut();
+    Sinon.stub(Model, 'findByIdAndUpdate').resolves(modelResponse);
+    const updated = await carService.updateOne('63c6f8a4e18b8441d9b2086f', createCarInput);
+    expect(updated).to.be.deep.equal(modelResponse);
   });
 });
