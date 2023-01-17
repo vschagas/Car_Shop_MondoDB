@@ -17,3 +17,18 @@ export const modelResponse = {
 export const arrayOfCars = [
   modelResponse,
 ];
+
+export const createMotoInput = {
+  model: 'Honda Cb 600f Hornet',
+  year: 2005,
+  color: 'Yellow',
+  status: true,
+  buyValue: 30.000,
+  category: 'Street',
+  engineCapacity: 600,
+};
+
+export const modelMotoResponse = {
+  id: '63c71aebf71d64670f2124ab',
+  ...createMotoInput,
+};
