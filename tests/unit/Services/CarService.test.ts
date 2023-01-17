@@ -22,10 +22,17 @@ describe('CarService Tests', function () {
     expect(createdCar).to.be.deep.equal(modelResponse);
   });
 
-  it('Shoul find a car all cars', async function () {
+  it('Should find a car all cars', async function () {
     const findAllCars = makeSut();
     Sinon.stub(Model, 'find').resolves(arrayOfCars);
     const findAll = await findAllCars.findAll();
     expect(findAll).to.be.deep.equal(arrayOfCars);
+  });
+
+  it('Should find By Id', async function () {
+    const carService = makeSut();
+    Sinon.stub(Model, 'findById').resolves(modelResponse);
+    const find = await carService.findById('63c6f8a4e18b8441d9b2086f');
+    expect(find).to.be.deep.equal(modelResponse);
   });
 });
