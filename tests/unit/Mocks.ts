@@ -9,12 +9,11 @@ export const createCarInput = {
   seatsQty: 5,
 };
 
-export const createResponse = {
-  id: '63c6f8a4e18b8441d9b2086f',
-  ...createCarInput,
-};
-
 export const modelResponse = {
   id: '63c6f8a4e18b8441d9b2086f',
   ...createCarInput,
 };
+
+export const arrayOfCars = [
+  modelResponse,
+];
