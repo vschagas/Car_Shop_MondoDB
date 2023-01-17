@@ -34,4 +34,11 @@ describe('Motorcycle Service test', function () {
     const find = await motorcycleSerice.findById('63c71aebf71d64670f2124ab');
     expect(find).to.be.deep.equal(modelMotoResponse);
   });
+
+  it('Should update one motocycle', async function () {
+    const motorcycleSerice = makeSut();
+    Sinon.stub(Model, 'findByIdAndUpdate').resolves(modelMotoResponse);
+    const updated = await motorcycleSerice.updateOne('63c71aebf71d64670f2124ab', createMotoInput);
+    expect(updated).to.be.deep.equal(modelMotoResponse);
+  });
 });
