@@ -32,3 +32,7 @@ export const modelMotoResponse = {
   id: '63c71aebf71d64670f2124ab',
   ...createMotoInput,
 };
+
+export const arrayofMoto = [
+  modelMotoResponse,
+];
