@@ -1,6 +1,8 @@
-import { Schema, models, Model, model } from 'mongoose';
+import { Schema, models, Model, model, isValidObjectId } from 'mongoose';
 import ICar from '../Interfaces/ICar';
 import IMotorcycle from '../Interfaces/IMotorcycle';
+
+const INVALID_MONGOID_ID = 'Invalid Mongo id';
 
 export default abstract class AbstractODM<T> {
   protected _model: Model<T>;
@@ -31,5 +33,12 @@ export default abstract class AbstractODM<T> {
       { $set: { ...obj } },
       { new: true },
     );
+  }
+
+  public async deleteOne(id: string): Promise<T | null> {
+    if (!isValidObjectId(id)) throw Error(INVALID_MONGOID_ID);
+    const deleted = this._model.findByIdAndDelete(id);
+    
+    return deleted;
   }
 }
