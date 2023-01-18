@@ -42,4 +42,11 @@ describe('CarService Tests', function () {
     const updated = await carService.updateOne('63c6f8a4e18b8441d9b2086f', createCarInput);
     expect(updated).to.be.deep.equal(modelResponse);
   });
+
+  it('Should delete one car', async function () {
+    const carService = makeSut();
+    Sinon.stub(Model, 'findByIdAndDelete').resolves(null);
+    const deleted = await carService.deleteCarById('63c6f8a4e18b8441d9b2086f');
+    expect(deleted).to.be.null('1', '2');
+  });
 });
