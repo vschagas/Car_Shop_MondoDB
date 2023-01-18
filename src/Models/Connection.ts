@@ -9,3 +9,9 @@ const connectToDatabase = (
 ) => mongoose.connect(mongoDatabaseURI);
 
 export default connectToDatabase;
+
+// const connectToDatabase = (
+//   mongoDatabaseURI = process.env.MONGO_URI,
+// ) => mongoose.connect(mongoDatabaseURI);
+
+// export default connectToDatabase;

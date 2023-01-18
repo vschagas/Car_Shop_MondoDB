@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import 'dotenv/config';
 import ICar from '../Interfaces/ICar';
 import CarService from '../Services/CarService';
 
