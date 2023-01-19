@@ -189,8 +189,153 @@
           }
         }
       }
+    },
+    "/motorcycles": {
+      "post": {
+        "summary": "Create new Motorcycle",
+        "description": "Create a new motorcycle with the input data",
+        "tags": ["Motorcycles"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/newMotorcycle"
+              },
+              "example": {
+                "model": "Honda Cb 600f Hornet",
+                "year": 2005,
+                "color": "Yellow",
+                "status": true,
+                "buyValue": 30.000,
+                "category": "Street",
+                "engineCapacity": 600
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/createdMotorcycle"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "get": {  
+        "summary": "Find all Motorcycles",
+        "tags": ["Motorcycles"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/findAllMotorcycle"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Requestr"
+          }
+        }
+      }
+    },
+    "/motorcycles/{id}": {
+      "get": {
+        "summary": "Find Motorcycle by ID",
+        "description": "Returns motorcycle based on ID",
+        "tags": ["Motorcycles"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "user ID",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/createdMotorcycle"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Motorcycle Not Found"
+          },
+          "422": {
+            "description": "Invalid Mongo id"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a Motorcycle",
+        "description": "Update a car with the input data",
+        "tags": ["Motorcycles"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "user ID",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createdMotorcycle"
+              },
+              "example": {
+                "model": "Honda Cb 600f Hornet",
+                "year": 2005,
+                "color": "Yellow",
+                "status": true,
+                "buyValue": 30.000,
+                "category": "Street",
+                "engineCapacity": 600
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/createdMotorcycle"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Motorcycle Not Found"
+          },
+          "422": {
+            "description": "Invalid Mongo id"
+          }
+        }
+      }
     }
   },
+
   "tags": [
     {
       "name": "Cars",
@@ -242,6 +387,47 @@
             "buyValue": {"type": "number"},
             "doorsQty": {"type": "number"},
             "seatsQty": {"type": "number"}
+          }
+        }
+      },
+      "createNewMotorcycle": {
+        "type": "object",
+        "properties": {
+          "model": { "type": "string"},
+          "year": {"type": "number"},
+          "color": { "type": "string"},
+          "status": {"type": "boolean"},
+          "buyValue": {"type": "number"},
+          "category": {"type": "number"},
+          "engineCapacity": {"type": "number"}
+        }
+      },
+      "createdMotorcycle": {
+        "type": "object",
+        "properties": {
+          "id": {"type":"string"},
+          "model": { "type": "string"},
+          "year": {"type": "number"},
+          "color": { "type": "string"},
+          "status": {"type": "boolean"},
+          "buyValue": {"type": "number"},
+          "category": {"type": "number"},
+          "engineCapacity": {"type": "number"}
+        }
+      },
+      "findAllMotorcycle": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {"type":"string"},
+            "model": { "type": "string"},
+            "year": {"type": "number"},
+            "color": { "type": "string"},
+            "status": {"type": "boolean"},
+            "buyValue": {"type": "number"},
+            "category": {"type": "number"},
+            "engineCapacity": {"type": "number"}
           }
         }
       }
