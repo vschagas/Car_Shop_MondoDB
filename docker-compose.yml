@@ -5,41 +5,35 @@ services:
     image: node:16.14
     container_name: car_shop
     build: ./
-    tty: true
-    stdin_open: true
-    command: bash
+    command: bash -c "npm install && npm run dev"
     restart: always
     working_dir: /app
     platform: linux/x86_64
     volumes:
       - ./:/app
-    depends_on:
-      - mongodb
+    # depends_on:
+    #   - mongodb
     ports:
       - 3001:3001
-    # env_file:
-    #   - ./.env
-    environment:
-      - MONGO_URI=mongodb://mongodb:27017/CarShop
+    env_file:
+      - ./.env
+    # environment:
+    #   - MONGO_URI=mongodb://mongodb:27017/CarShop
 
-  mongodb:
-    image: mongo:5.0.7
-    container_name: car_shop_db
-    volumes:
-      - ./:/app
-    restart: always
-    platform: linux/x86_64
-    ports:
-      - 27017:27017
+  # mongodb:
+#     image: mongo:5.0.7
+#     container_name: car_shop_db
+#     volumes:
+#       - ./:/app
+#     restart: always
+#     platform: linux/x86_64
+#     ports:
+#       - 27017:27017
+#     env_file:
+#       - ./.env
 
-networks:
-  default:
-    name: car_shop_net
-
-# As chaves `tty`, `stdin_open` e `command` fazem com que o container fique
-# rodando em segundo plano, bem como tornam possível o uso do comando
-# `docker attach`, já deixando o terminal atual acoplado ao container, direto
-# no bash. Apesar disso, utilizar o attach mais de uma vez irá replicar o
-# terminal, portanto é melhor utilizar o comando `docker exec`.
+# networks:
+#   default:
+#     name: car_shop_net
 
 

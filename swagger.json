@@ -177,6 +177,14 @@
         "summary": "Delete a Car based on ID",
         "description": "Delete a car",
         "tags": ["Cars"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "user ID",
+            "required": true
+          }
+        ],
         "responses": {
           "204": {
             "description": "No Content"
