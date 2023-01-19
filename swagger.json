@@ -12,22 +12,25 @@
     }
   ],
   "paths": {
-    "/user": {
+    "/cars": {
       "post": {
-        "summary": "Add new user",
-        "description": "Create a new user with the input data",
-        "tags": ["Users"],
+        "summary": "Create new Car",
+        "description": "Create a new car with the input data",
+        "tags": ["Cars"],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/newUser"
+                "$ref": "#/components/schemas/newCar"
               },
               "example": {
-                "displayName": "maria silva",
-                "email": "maria@exemplo.com",
-                "password": "123456",
-                "image": "https://cdn-icons-png.flaticon.com/512/7506/7506581.png"
+                "model": "Uno com Escada",
+                "year": 2002,
+                "color": "Black",
+                "status": true,
+                "buyValue": 15.990,
+                "doorsQty": 4,
+                "seatsQty": 5
               }
             }
           }
@@ -38,54 +41,41 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/token"
+                  "$ref": "#/components/schemas/createdCar"
                 }
               }
             }
           },
           "400": {
             "description": "Bad Request"
-          },
-          "409": {
-            "description": "Conflict"
           }
         }
       },
-      "get": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Find all users",
-        "tags": ["Users"],
+      "get": {  
+        "summary": "Find all Cars",
+        "tags": ["Cars"],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/users"
+                  "$ref": "#/components/schemas/findAllCars"
                 }
               }
             }
           },
-          "401": {
-            "description": "Unauthorized"
+          "400": {
+            "description": "Bad Requestr"
           }
         }
       }
     },
-    "/user/{id}": {
+    "/cars/{id}": {
       "get": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Find user by ID",
-        "description": "Returns user based on ID",
-        "tags": ["Users"],
+        "summary": "Find Car by ID",
+        "description": "Returns car based on ID",
+        "tags": ["Cars"],
         "parameters": [
           {
             "name": "id",
@@ -94,236 +84,52 @@
             "required": true
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/user"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/user/me": {
-      "delete": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Delete user",
-        "description": "Delete logged user",
-        "tags": ["Users"],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      }
-    },
-    "/categories": {
-      "post": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Add new category",
-        "description": "Create a new category with the input data",
-        "tags": ["Categories"],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/newCategory"
+                "$ref": "#/components/schemas/newCar"
               },
               "example": {
-                "name": "Cars"
+                "model": "Uno com Escada",
+                "year": 2002,
+                "color": "Black",
+                "status": true,
+                "buyValue": 15.990,
+                "doorsQty": 4,
+                "seatsQty": 5
               }
             }
           }
         },
         "responses": {
-          "201": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/category"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "409": {
-            "description": "Conflict"
-          }
-        }
-      },
-      "get": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Find all categories",
-        "description": "Returns all categories",
-        "tags": ["Categories"],
-        "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/categories"
+                  "$ref": "#/components/schemas/createdCar"
                 }
               }
             }
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      }
-    },
-    "/post": {
-      "post": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Add new post",
-        "description": "Create a new post with the input data",
-        "tags": ["Posts"],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/newPost"
-              },
-              "example": {
-                "title": "Blog Title!",
-                "content": "The whole text for the blog post goes here in this key",
-                "categoryIds": [1, 2]
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/createdPost"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      },
-      "get": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Find all posts",
-        "description": "Returns all posts",
-        "tags": ["Posts"],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/posts"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      }
-    },
-    "/post/{id}": {
-      "get": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Find post by ID",
-        "description": "Returns post based on ID",
-        "tags": ["Posts"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "post ID",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/post"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Car Not Found"
+          },
+          "422": {
+            "description": "Invalid Mongo id"
           }
         }
       },
       "put": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Update post",
-        "description": "Update post with the selected ID",
-        "tags": ["Posts"],
+        "summary": "Update a Car",
+        "description": "Update a car with the input data",
+        "tags": ["Cars"],
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "post ID",
+            "description": "user ID",
             "required": true
           }
         ],
@@ -331,11 +137,16 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/updatePost"
+                "$ref": "#/components/schemas/createdCar"
               },
               "example": {
-                "title": "Blog Title Edited!",
-                "content": "The edited text goes right here too!"
+                "model": "Uno com Escada",
+                "year": 2002,
+                "color": "Black",
+                "status": true,
+                "buyValue": 15.990,
+                "doorsQty": 4,
+                "seatsQty": 5
               }
             }
           }
@@ -346,7 +157,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/post"
+                  "$ref": "#/components/schemas/createdCar"
                 }
               }
             }
@@ -354,71 +165,27 @@
           "400": {
             "description": "Bad Request"
           },
-          "401": {
-            "description": "Unauthorized"
+          "404": {
+            "description": "Car Not Found"
+          },
+          "422": {
+            "description": "Invalid Mongo id"
           }
         }
       },
       "delete": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Delete post",
-        "description": "Delete post with the selected ID",
-        "tags": ["Posts"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "post ID",
-            "required": true
-          }
-        ],
+        "summary": "Delete a Car based on ID",
+        "description": "Delete a car",
+        "tags": ["Cars"],
         "responses": {
           "204": {
             "description": "No Content"
           },
-          "401": {
-            "description": "Unauthorized"
-          },
           "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/post/search": {
-      "get": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Find posts by search term",
-        "description": "Returns posts whose title or content contains the search term",
-        "tags": ["Posts"],
-        "parameters": [
-          {
-            "name": "q",
-            "in": "query",
-            "description": "search term for post"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/posts"
-                }
-              }
-            }
+            "description": "Car Not Found"
           },
-          "401": {
-            "description": "Unauthorized"
+          "422": {
+            "description": "Invalid mongo id"
           }
         }
       }
@@ -426,306 +193,57 @@
   },
   "tags": [
     {
-      "name": "Login",
-      "description": "Login endpoints, start here to generate a token."
+      "name": "Cars",
+      "description": "Cars endpoints"
     },
     {
-      "name": "Users",
-      "description": "Users endpoints"
-    },
-    {
-      "name": "Categories",
-      "description": "Categories endpoints"
-    },
-    {
-      "name": "Posts",
-      "description": "Posts endpoints"
+      "name": "Motorcycles",
+      "description": "Motorcycle endpoints"
     }
+
   ],
   "components": {
-    "schemas": {
-      "login": {
+    "schemas": {    
+      "newCar": {
         "type": "object",
         "properties": {
-          "email": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          }
+          "model": { "type": "string"},
+          "year": {"type": "number"},
+          "color": { "type": "string"},
+          "status": {"type": "boolean"},
+          "buyValue": {"type": "number"},
+          "doorsQty": {"type": "number"},
+          "seatsQty": {"type": "number"}
         }
       },
-      "token": {
+      "createdCar": {
         "type": "object",
         "properties": {
-          "token": {
-            "type": "string"
-          }
+          "id": {"type":"string"},
+          "model": { "type": "string"},
+          "year": {"type": "number"},
+          "color": { "type": "string"},
+          "status": {"type": "boolean"},
+          "buyValue": {"type": "number"},
+          "doorsQty": {"type": "number"},
+          "seatsQty": {"type": "number"}
         }
       },
-      "email": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string"
-          }
-        }
-      },
-      "newUser": {
-        "type": "object",
-        "properties": {
-          "displayName": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          },
-          "image": {
-            "type": "string"
-          }
-        }
-      },
-      "newCategory": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          }
-        }
-      },
-      "newPost": {
-        "type": "object",
-        "properties": {
-          "title": {
-            "type": "string"
-          },
-          "content": {
-            "type": "string"
-          },
-          "categoryIds": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "updatePost": {
-        "type": "object",
-        "properties": {
-          "title": {
-            "type": "string"
-          },
-          "content": {
-            "type": "string"
-          }
-        }
-      },
-      "users": {
+      "findAllCars": {
         "type": "array",
         "items": {
           "type": "object",
           "properties": {
-            "id": {
-              "type": "number"
-            },
-            "displayName": {
-              "type": "string"
-            },
-            "email": {
-              "type": "string"
-            },
-            "image": {
-              "type": "string"
-            }
+            "id": {"type":"string"},
+            "model": { "type": "string"},
+            "year": {"type": "number"},
+            "color": { "type": "string"},
+            "status": {"type": "boolean"},
+            "buyValue": {"type": "number"},
+            "doorsQty": {"type": "number"},
+            "seatsQty": {"type": "number"}
           }
         }
-      },
-      "user": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number"
-          },
-          "displayName": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "image": {
-            "type": "string"
-          }
-        }
-      },
-      "categories": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "number"
-            },
-            "name": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "category": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number"
-          },
-          "name": {
-            "type": "string"
-          }
-        }
-      },
-      "posts": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "number"
-            },
-            "title": {
-              "type": "string"
-            },
-            "content": {
-              "type": "string"
-            },
-            "userId": {
-              "type": "number"
-            },
-            "published": {
-              "type": "string"
-            },
-            "updated": {
-              "type": "string"
-            },
-            "user": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "number"
-                },
-                "displayName": {
-                  "type": "string"
-                },
-                "email": {
-                  "type": "string"
-                },
-                "image": {
-                  "type": "string"
-                }
-              }
-            },
-            "categories": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "number"
-                  },
-                  "name": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number"
-          },
-          "title": {
-            "type": "string"
-          },
-          "content": {
-            "type": "string"
-          },
-          "userId": {
-            "type": "number"
-          },
-          "published": {
-            "type": "string"
-          },
-          "updated": {
-            "type": "string"
-          },
-          "user": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "number"
-              },
-              "displayName": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "image": {
-                "type": "string"
-              }
-            }
-          },
-          "categories": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "number"
-                },
-                "name": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      },
-      "createdPost": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number"
-          },
-          "title": {
-            "type": "string"
-          },
-          "content": {
-            "type": "string"
-          },
-          "userId": {
-            "type": "number"
-          },
-          "published": {
-            "type": "string"
-          },
-          "updated": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
       }
     }
   }
