@@ -4,12 +4,13 @@ services:
   node:
     image: node:16.14
     container_name: car_shop
-    build: ./ 
+    build: ./
     tty: true
     stdin_open: true
     command: bash
     restart: always
     working_dir: /app
+    platform: linux/x86_64
     volumes:
       - ./:/app
     depends_on:
@@ -27,6 +28,7 @@ services:
     volumes:
       - ./:/app
     restart: always
+    platform: linux/x86_64
     ports:
       - 27017:27017
 
