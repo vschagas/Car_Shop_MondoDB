@@ -11,29 +11,27 @@ services:
     platform: linux/x86_64
     volumes:
       - ./:/app
-    # depends_on:
-    #   - mongodb
+    depends_on:
+      - mongodb
     ports:
       - 3001:3001
-    env_file:
-      - ./.env
-    # environment:
-    #   - MONGO_URI=mongodb://mongodb:27017/CarShop
+    # env_file:
+    #   - ./.env
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/CarShop
 
-  # mongodb:
-#     image: mongo:5.0.7
-#     container_name: car_shop_db
-#     volumes:
-#       - ./:/app
-#     restart: always
-#     platform: linux/x86_64
-#     ports:
-#       - 27017:27017
-#     env_file:
-#       - ./.env
+  mongodb:
+    image: mongo:5.0.7
+    container_name: car_shop_db
+    volumes:
+      - ./:/app
+    restart: always
+    platform: linux/x86_64
+    ports:
+      - 27017:27017
+    # env_file:
+    #   - ./.env
 
-# networks:
-#   default:
-#     name: car_shop_net
-
-
+networks:
+  default:
+    name: car_shop_net
