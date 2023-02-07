@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Blogs API",
+    "title": "Car_Shop_API",
     "description": "Este é um projeto RESTful API, implementado em NodeJs e TypeScript. Neste projeto é possível realizar um CRUD de operações simulando uma concessionária. Foi utilizado o Atla MongoDb e Docker. Acesse o repositório [Car Shop Github repository](https://github.com/vschagas/Car_Shop_MondoDB_POO) para mais informações!",
     "version": "1.0.0"
   },
